@@ -1,0 +1,24 @@
+version: '3.6'
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:14.9.1-ce.0'
+    restart: always
+    hostname: 'ipaddressofyourserver'
+    container_name: 'yourcontainername'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://yoururlhere'
+        # Add any other gitlab.rb configuration here, each on its own line
+    ports:
+      - '80:80'
+      - '443:443'
+      - '22:22'
+    volumes:
+      - './config:/etc/gitlab'
+      - './logs:/var/log/gitlab'
+      - './gitlab-data/data:/var/opt/gitlab'
+    logging:
+       driver: "json-file"
+       options:
+           max-file: "5"
+           max-size: "10m"
