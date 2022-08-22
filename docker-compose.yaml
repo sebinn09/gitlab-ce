@@ -16,7 +16,7 @@ services:
     volumes:
       - './config:/etc/gitlab'
       - './logs:/var/log/gitlab'
-      - './gitlab-data/data:/var/opt/gitlab'
+      - './data:/var/opt/gitlab'
     logging:
        driver: "json-file"
        options:
